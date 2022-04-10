@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Калькулятор для авто</title>
+</head>
+
+
+<body>
+
+    <h3>Оцените свою машину</h3>
+
+    <div>Марка:
+        <select id="label">
+            <option value="mercedes">Mercedes</option>
+            <option value="honda">Honda</option>
+            <option value="ford">Ford</option>
+        </select>
+    </div>
+    <br>
+    <div>Год выпуска:
+        <select id="year">
+            <option value="2015">2015</option>
+            <option value="2016">2016</option>
+            <option value="2017">2017</option>
+            <option value="2018">2018</option>
+            <option value="2019">2019</option>
+            <option value="2020">2020</option>
+        </select>
+    </div>
+    <br>
+    <div>Тип кузова:</div>
+    <input type="radio" name="body" value="sedan">Седан<br>
+    <input type="radio" name="body" value="universal">Универсал<br>
+    <input type="radio" name="body" value="hatchback">Хэтчбек<br>
+
+    <br>
+    <input type="text" id="owners" value="" placeholder="Количество владельцев">
+    <br><br>
+    <input type="text" id="mileage" value="" placeholder="Пробег">
+    <br><br>
+
+    <input type="checkbox" name="dtp" value="dtp">Без ДТП<br>
+
+    <br>
+    <button onclick="calc();">Рассчитать стоимость</button>
+    <br> <br>
+
+    <div id="cost"></div>
+
+
+    <script>
+        function calc() {
+
+            label = document.getElementById('label').value;
+            switch (label) {
+                case "mercedes":
+                    indexlabel = 20;
+                    break
+                case "honda":
+                    indexlabel = 10;
+                    break
+                case "ford":
+                    indexlabel = 12;
+                    break
+                default:
+                    indexlabel = 20;
+                    break
+            }
+
+            year = document.getElementById('year').value;
+            switch (year) {
+                case "2015":
+                    indexyear = 10;
+                    break
+                case "2016":
+                    indexyear = 11;
+                    break
+                case "2017":
+                    indexyear = 12;
+                    break
+                case "2018":
+                    indexyear = 13;
+                    break
+                case "2019":
+                    indexyear = 14;
+                    break
+                case "2020":
+                    indexyear = 15;
+                    break
+                default:
+                    indexyear = 10;
+                    break
+            }
+
+            owners = document.getElementById('owners').value;
+            mileage = document.getElementById('mileage').value;
+            if (owners == "") {
+                alert("Вы не указали колиечество владельцев");
+            } else if (mileage == "") {
+                alert("Вы не указали пробег");
+            } else {
+                part1 = parseFloat(mileage) / parseFloat(owners);
+
+                cost = part1 * indexlabel * indexyear;
+                document.getElementById('cost').innerHTML = "Стоимость вашего автомобиля: " + cost + " рублей";
+            }
+        }
+    </script>
+
+
+</body>
+
+</html>
